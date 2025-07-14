@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fingerprint Scanner</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .scanner {
+            width: 200px;
+            height: 200px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/e/e4/Fingerprint_picture.svg') no-repeat center;
+            background-size: cover;
+            margin: 20px auto;
+            border: 2px solid black;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .scanning {
+            animation: scanEffect 1.5s infinite alternate;
+        }
+        @keyframes scanEffect {
+            from { opacity: 1; }
+            to { opacity: 0.5; }
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fingerprint Scanner</h1>
+    <p>Click on the scanner to scan your fingerprint</p>
+    <div class="scanner" onclick="scanFingerprint()"></div>
+    <p id="result"></p>
+    
+    <script>
+        function scanFingerprint() {
+            let scanner = document.querySelector('.scanner');
+            let result = document.getElementById('result');
+            
+            scanner.classList.add('scanning');
+            result.innerText = "Scanning...";
+            
+            setTimeout(() => {
+                scanner.classList.remove('scanning');
+                let bloodGroups = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
+                let randomBloodGroup = bloodGroups[Math.floor(Math.random() * bloodGroups.length)];
+                result.innerText = "Detected Blood Group: " + randomBloodGroup;
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
