@@ -127,12 +127,16 @@
       jsonData[key] = value;
     }
 
-    try {
-      const response = await fetch("https://sheetdb.io/api/v1/n3lar7yshz18g", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ data: jsonData })
-      });
+  try {
+  const response = await fetch("https://sheetdb.io/api/v1/n3lar7yshz18g", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "https://sheetdb.io/api/v1/n3lar7yshz18g" 
+    },
+    body: JSON.stringify({ data: jsonData })
+  });
+
 
       if (response.ok) {
         alert("Form submitted successfully!");
